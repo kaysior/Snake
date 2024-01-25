@@ -132,7 +132,6 @@ namespace Snake
                 Settings.directions = "up";
             }
 
-            // Koniec ustawienia kierunkow
 
             for (int i = Snake.Count - 1; i >= 0 ; i--)
             {
@@ -154,29 +153,21 @@ namespace Snake
                             break;
                     }
 
-                    if (Snake[i].X < 0)
+                    // Zakonczenie gry po wyjechaniu za mape
+
+                    if (Snake[i].X < 0 || Snake[i].X >= maxWidth || Snake[i].Y < 0 || Snake[i].Y >= maxHeight)
                     {
-                        Snake[i].X = maxWidth;
-                    }
-                    if (Snake[i].X > maxWidth)
-                    {
-                        Snake[i].X = 0;
-                    }
-                    if (Snake[i].Y < 0)
-                    {
-                       Snake[i].Y = maxHeight;
-                    }
-                    if (Snake[i].Y > maxHeight)
-                    {
-                        Snake[i].Y = 0;
+                        GameOver();
                     }
 
+                    // Dodawanie kolejnej czesci ciala po zjedzeniu
 
                     if (Snake[i].X == food.X && Snake[i].Y == food.Y)
                     {
                         EatFood();
                     }
 
+                    // Zakonczenie gry po wjechaniu w siebie
 
                     for (int j = 1; j < Snake.Count ; j++)
                     {
@@ -210,7 +201,7 @@ namespace Snake
                 }
                 else
                 {
-                    snakeColour = Brushes.White;
+                    snakeColour = Brushes.DarkGreen;
                 }
 
                 canvas.FillEllipse(snakeColour, new Rectangle
@@ -241,14 +232,11 @@ namespace Snake
             score = 0;
             txtScore.Text = "Score: " + score;
 
-            Circle head = new Circle { X = 10, Y = 5 };
+            Circle head = new Circle { X = 10, Y = 10 };
             Snake.Add(head); // Dodanie glowy weza do listy, przyjmuje indeks 0
 
-            for (int i = 0; i < 10; i++)
-            {
-                Circle body = new Circle();
-                Snake.Add(body);
-            }
+            Circle body = new Circle();
+            Snake.Add(body);
 
             food = new Circle { X = rand.Next(2, maxWidth), Y = rand.Next(2, maxHeight) };
 
