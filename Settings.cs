@@ -15,9 +15,9 @@ namespace Snake
 
         public Settings()
         {
-            Width = 16;
-            Height = 16;
-            directions = "left";
+            Width = 20;
+            Height = 20;
+            directions = "right";
         }
 
     }
