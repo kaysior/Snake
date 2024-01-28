@@ -1,4 +1,4 @@
-#Snake Game Project
+# Snake Game Project
 
 Jest to projekt znanej już wszystkim w różnych wydaniach popularnej gry Snake. 
 
